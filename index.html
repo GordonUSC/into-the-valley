@@ -63,11 +63,14 @@ h2{font-size:clamp(28px,5vw,46px);font-weight:900;line-height:1.05}
 
 /* wristband wall */
 .wall{display:grid;gap:14px;margin-top:26px;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
-.wb{position:relative;border:0;padding:0;background:none;text-align:left;color:inherit;font:inherit;cursor:pointer;perspective:1000px;min-height:230px}
+.wb{position:relative;border:0;padding:0;background:none;text-align:left;color:inherit;font:inherit;cursor:pointer;perspective:1000px;min-height:250px}
 .wb .in{position:absolute;inset:0;transition:transform .7s cubic-bezier(.3,1.3,.5,1);transform-style:preserve-3d}
 .wb.flip .in{transform:rotateY(180deg)}
-.wb .f,.wb .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;border:1px solid var(--line);background:var(--panel);padding:16px;overflow:hidden}
-.wb .b{transform:rotateY(180deg);overflow:auto}
+.wb .f,.wb .b{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;border:1px solid var(--line);background:var(--panel);padding:16px}
+.wb .f{transform:rotateY(0deg) translateZ(1px);transition:visibility 0s .3s}
+.wb .b{visibility:hidden;transition:visibility 0s .3s}
+.wb.flip .f{visibility:hidden}.wb.flip .b{visibility:visible}
+.wb .b{transform:rotateY(180deg) translateZ(1px);display:flex;flex-direction:column;justify-content:center}
 .strap{height:46px;border-radius:6px;position:relative;margin-bottom:14px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.12) 0 2px,transparent 2px 6px),repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0 2px,transparent 2px 5px),var(--c);display:flex;align-items:center;padding:0 12px;font-family:"Unbounded",sans-serif;font-weight:900;font-size:14px;letter-spacing:.06em;color:#0b0a10;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .strap::after{content:"";position:absolute;right:10px;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;background:#d9d9d9;box-shadow:inset 0 0 0 4px #9a9a9a}
 .wb h3{font-size:19px;font-weight:800;line-height:1.2}
@@ -76,10 +79,29 @@ h2{font-size:clamp(28px,5vw,46px);font-weight:900;line-height:1.05}
 .wb .got{position:absolute;top:12px;right:12px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.14em;color:var(--void);background:var(--acid);border-radius:4px;padding:2px 6px;display:none}
 .wb.caught .got{display:block}
 .wb.caught .f{box-shadow:0 0 0 1px var(--acid),0 0 26px rgba(200,255,61,.18)}
-.wb .b p{margin:0 0 8px;font-size:16px}
+.wb .b p{margin:0 0 8px;font-size:15.5px;line-height:1.5}
 .nojs-story{display:block;margin-top:8px;font-size:15.5px;color:var(--mute)}
 .js .nojs-story{display:none}
 html:not(.js) .wb{min-height:0}html:not(.js) .wb .in,html:not(.js) .wb .f{position:static}html:not(.js) .wb .b,html:not(.js) .wb .tap{display:none}html:not(.js) .cab,html:not(.js) .ctrl,html:not(.js) .droprig .holdbtn,html:not(.js) .start{display:none}
+
+/* loadout */
+.loadout{margin-top:26px;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr))}
+.item{border:1px solid var(--line);border-radius:12px;background:linear-gradient(160deg,var(--panel),var(--void-2));padding:16px;min-width:0;position:relative;overflow:hidden}
+.item .rar{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--c,var(--acid))}
+.item h3{font-size:17px;font-weight:800;margin-top:6px}
+.item p{margin:6px 0 0;font-size:15.5px;color:var(--mute)}
+.item::before{content:"";position:absolute;right:-30px;top:-30px;width:90px;height:90px;border-radius:50%;background:var(--c,var(--acid));opacity:.16;filter:blur(8px)}
+
+/* best friend edition */
+.bff{margin-top:26px;display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.bq{border:1.5px solid #f6c453;border-radius:14px;padding:18px;background:radial-gradient(circle at 100% 0,rgba(246,196,83,.16),transparent 55%),var(--panel);min-width:0}
+.bq .rar{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#f6c453}
+.bq h3{font-size:18px;font-weight:800;margin-top:6px}
+.bq blockquote{margin:10px 0 8px;font-size:17px;line-height:1.5}
+.bq .w{font-family:"Space Mono",monospace;font-size:12.5px;color:var(--mute)}
+.wb .mz{position:absolute;z-index:3;top:29px;right:50px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.12em;color:#1a1206;background:#f6c453;border-radius:4px;padding:2px 6px;display:none}
+.mm .wb.mas .mz{display:block}.mm .wb.mas .got{top:36px}
+.mm .wb.mas .f{box-shadow:0 0 0 1.5px #f6c453,0 0 30px rgba(246,196,83,.25)}
 
 /* drop */
 .droprig{margin-top:24px;display:grid;gap:18px;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;border:1px solid var(--line);border-radius:16px;padding:22px;background:radial-gradient(circle at 30% 50%,rgba(139,92,255,.18),transparent 60%),var(--void-2)}
@@ -146,18 +168,32 @@ body.shake{animation:shake .5s}
     <p class="lede">Steer with the arrow keys or A and D, or tap the left and right side of the screen. Each wristband is a real show. Catch it to unlock the story.</p>
     <div class="cab" id="cab">
       <canvas id="gl" aria-label="A 3D flight through a wireframe valley collecting festival wristbands"></canvas>
-      <div class="bar"><span>Wristbands <b id="score">0</b>/<span id="total">16</span></span><span id="lvlname">Into the Valley</span></div>
+      <div class="bar"><span>Wristbands <b id="score">0</b>/<span id="total">30</span></span><span id="lvlname">Into the Valley</span></div>
       <div class="overlay" id="ov"><div><div class="hud" style="color:var(--acid)">Insert coin</div><h3 style="font-size:clamp(24px,4vw,36px);margin:10px 0 16px">Ready, Player 1?</h3><button class="start" id="go">START RUN</button></div></div>
       <div class="overlay" id="mem" hidden><div class="mcard" id="mcard"></div></div>
     </div>
     <div class="ctrl"><div class="pad"><button id="lb" aria-label="Steer left">&#9664;</button><button id="rb" aria-label="Steer right">&#9654;</button></div><span style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="skip">Unlock all</button><button class="btn" id="mute">Sound: on</button></span></div>
   </section>
 
+  <section id="bffsec" hidden>
+    <div class="kicker" style="color:#f6c453">Achievement unlocked &middot; Best friend in the universe</div>
+    <h2>The receipts</h2>
+    <p class="lede">Straight from the texts, Mason. This is what Gordon says about you, and what you say back.</p>
+    <div class="bff" id="bffgrid"></div>
+  </section>
+
   <section id="wall">
     <div class="kicker">Inventory</div>
     <h2>The wristband wall</h2>
     <p class="lede" id="walllede">Every RL Grime and Sable Valley night on Gordon's record. Tap a band to flip it.</p>
-    <div class="wall" id="wallgrid"><button class="wb" id="wb0" style="--c:#8b5cff" aria-label="RL Grime at Intrigue, EDC Week, May 2019"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">EDC Week</div><h3>RL Grime at Intrigue, EDC Week</h3><div class="meta">May 2019 &middot; Las Vegas</div><span class="nojs-story">EDC Week in Vegas, and the first RL Grime night on Gordon&#x27;s record. Three months later he texted: &quot;all I want in the world is to meet RL Grime.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>EDC Week in Vegas, and the first RL Grime night on Gordon&#x27;s record. Three months later he texted: &quot;all I want in the world is to meet RL Grime.&quot;</p></div></div></button><button class="wb" id="wb1" style="--c:#c8ff3d" aria-label="Austin City Limits, Weekend 1, Fri Oct 4, 2019"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">ACL 2019</div><h3>Austin City Limits, Weekend 1</h3><div class="meta">Fri Oct 4, 2019 &middot; Zilker Park, Austin</div><span class="nojs-story">A Friday at ACL with his Houston friends. RL Grime played that afternoon, and friends Gordon would not meet for three more years were filming in the same crowd.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A Friday at ACL with his Houston friends. RL Grime played that afternoon, and friends Gordon would not meet for three more years were filming in the same crowd.</p></div></div></button><button class="wb" id="wb2" style="--c:#7fe7ff" aria-label="The first Sable Valley stream, May 30, 2020"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">SV Stream</div><h3>The first Sable Valley stream</h3><div class="meta">May 30, 2020 &middot; A Zoom room, everywhere</div><span class="nojs-story">Lockdown. When the label threw its first livestream, Gordon hosted a Zoom watch party so the whole crew could rave from their living rooms.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Lockdown. When the label threw its first livestream, Gordon hosted a Zoom watch party so the whole crew could rave from their living rooms.</p></div></div></button><button class="wb" id="wb3" style="--c:#ff6a1a" aria-label="Halloween X, Oct 28, 2021"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">Halloween X</div><h3>Halloween X</h3><div class="meta">Oct 28, 2021 &middot; Hollywood Palladium, LA</div><span class="nojs-story">The tenth Halloween show. In Gordon&#x27;s words: &quot;the hardcore RL fans from the internet just recognized me and pulled me in dead center no pushing #bestlife&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>The tenth Halloween show. In Gordon&#x27;s words: &quot;the hardcore RL fans from the internet just recognized me and pulled me in dead center no pushing #bestlife&quot;</p></div></div></button><button class="wb" id="wb4" style="--c:#b79bff" aria-label="RL Grime, Juelz and Montell2099, Nov 5, 2021"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">Brooklyn</div><h3>RL Grime, Juelz and Montell2099</h3><div class="meta">Nov 5, 2021 &middot; Avant Gardner, Brooklyn</div><span class="nojs-story">A Sable Valley takeover in New York: RL plus two of his label artists, with Gordon&#x27;s son Brennan and friends at a Sable Valley table. Part of what Gordon called his &quot;RL pilgrimage&quot; for his birthday.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A Sable Valley takeover in New York: RL plus two of his label artists, with Gordon&#x27;s son Brennan and friends at a Sable Valley table. Part of what Gordon called his &quot;RL pilgrimage&quot; for his birthday.</p></div></div></button><button class="wb" id="wb5" style="--c:#c8ff3d" aria-label="Countdown NYE, Dec 31, 2021"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">Countdown</div><h3>Countdown NYE</h3><div class="meta">Dec 31, 2021 &middot; Southern California</div><span class="nojs-story">Ringing in 2022 with Brennan and an RL Grime set. Two weeks earlier Gordon had written: &quot;RL Grime is the anchor for me.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Ringing in 2022 with Brennan and an RL Grime set. Two weeks earlier Gordon had written: &quot;RL Grime is the anchor for me.&quot;</p></div></div></button><button class="wb" id="wb6" style="--c:#8b5cff" aria-label="RL Grime at Exchange LA, Feb 10, 2022"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">Exchange LA</div><h3>RL Grime at Exchange LA</h3><div class="meta">Feb 10, 2022 &middot; Downtown LA</div><span class="nojs-story">A club night in an old stock exchange building, with Mason.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A club night in an old stock exchange building, with Mason.</p></div></div></button><button class="wb" id="wb7" style="--c:#7fe7ff" aria-label="ILLfest: RL Grime b2b Baauer, Feb 18-19, 2022"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">ILLfest</div><h3>ILLfest: RL Grime b2b Baauer</h3><div class="meta">Feb 18-19, 2022 &middot; Circuit of the Americas, Austin</div><span class="nojs-story">Two trap pioneers trading tracks back to back on a racetrack in Texas, with Brennan.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Two trap pioneers trading tracks back to back on a racetrack in Texas, with Brennan.</p></div></div></button><button class="wb" id="wb8" style="--c:#ff6a1a" aria-label="Halloween: Dead Space, Oct 27, 2022"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">Dead Space</div><h3>Halloween: Dead Space</h3><div class="meta">Oct 27, 2022 &middot; Kia Forum, Inglewood</div><span class="nojs-story">Halloween at the Forum with Brennan, in the pink RL Grime jersey Mason gave him for his birthday. &quot;People stop me&quot; about that jersey, he says.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Halloween at the Forum with Brennan, in the pink RL Grime jersey Mason gave him for his birthday. &quot;People stop me&quot; about that jersey, he says.</p></div></div></button><button class="wb" id="wb9" style="--c:#c8ff3d" aria-label="Sable Valley Breach Party, Jul 6, 2023"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">SV Breach</div><h3>Sable Valley Breach Party</h3><div class="meta">Jul 6, 2023 &middot; Echoplex, LA</div><span class="nojs-story">A small-room label party: RL Grime and Juelz sharing the midnight to 1:30 slot, with Jawns on the bill. The family up close.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A small-room label party: RL Grime and Juelz sharing the midnight to 1:30 slot, with Jawns on the bill. The family up close.</p></div></div></button><button class="wb" id="wb10" style="--c:#b79bff" aria-label="Shambhala, Jul 2023"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">Shambhala</div><h3>Shambhala</h3><div class="meta">Jul 2023 &middot; Salmo, British Columbia</div><span class="nojs-story">A festival in a forest farm in the Canadian mountains, and an RL Grime set with the Shambhala crew.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A festival in a forest farm in the Canadian mountains, and an RL Grime set with the Shambhala crew.</p></div></div></button><button class="wb" id="wb11" style="--c:#8b5cff" aria-label="RL Grime Presents PLAYlive, Nov 24, 2023"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">PLAYlive</div><h3>RL Grime Presents PLAYlive</h3><div class="meta">Nov 24, 2023 &middot; Ontario, California</div><span class="nojs-story">The live show for PLAY, the album built in three parts: APEX, GRID and RUSH. It is designed like a game, which makes it John&#x27;s album too.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>The live show for PLAY, the album built in three parts: APEX, GRID and RUSH. It is designed like a game, which makes it John&#x27;s album too.</p></div></div></button><button class="wb" id="wb12" style="--c:#7fe7ff" aria-label="RL Grime at Academy, Mar 2, 2024"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">Academy</div><h3>RL Grime at Academy</h3><div class="meta">Mar 2, 2024 &middot; Hollywood</div><span class="nojs-story">A Hollywood club night, the kind where you can see his hands on the mixer.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A Hollywood club night, the kind where you can see his hands on the mixer.</p></div></div></button><button class="wb" id="wb13" style="--c:#ff6a1a" aria-label="RL Grime at the Palladium, Dec 20, 2024"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">Palladium</div><h3>RL Grime at the Palladium</h3><div class="meta">Dec 20, 2024 &middot; Hollywood Palladium, LA</div><span class="nojs-story">Back at the Palladium for a 95-minute set, 11:35 PM to 1:10 AM.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Back at the Palladium for a 95-minute set, 11:35 PM to 1:10 AM.</p></div></div></button><button class="wb" id="wb14" style="--c:#c8ff3d" aria-label="RL Grime at Academy, Dec 27, 2025"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">Academy 2</div><h3>RL Grime at Academy</h3><div class="meta">Dec 27, 2025 &middot; Hollywood</div><span class="nojs-story">Closing out 2025 in Hollywood, with Mason there too.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Closing out 2025 in Hollywood, with Mason there too.</p></div></div></button><button class="wb" id="wb15" style="--c:#b79bff" aria-label="NiteHarts Latenite: ISOKNOCK b2b RL Grime, Sun Oct 11, 2026"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">Latenite</div><h3>NiteHarts Latenite: ISOKNOCK b2b RL Grime</h3><div class="meta">Sun Oct 11, 2026 &middot; Pechanga Arena, San Diego</div><span class="nojs-story">Tonight, the night this was made: RL playing back to back with ISOxo and Knock2, whose track &quot;niteharts&quot; came out on Sable Valley and shares the festival&#x27;s name.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Tonight, the night this was made: RL playing back to back with ISOxo and Knock2, whose track &quot;niteharts&quot; came out on Sable Valley and shares the festival&#x27;s name.</p></div></div></button></div>
+    <div class="wall" id="wallgrid"><button class="wb" id="wb0" style="--c:#8b5cff" aria-label="EDC Week: RL Grime at Intrigue, Wed May 15, 2019"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Intrigue</div><h3>EDC Week: RL Grime at Intrigue</h3><div class="meta">Wed May 15, 2019 &middot; Las Vegas</div><span class="nojs-story">Gordon drove up to Vegas midweek for an EDC Week club night. The first RL Grime wristband on his record, and the start of a year he&#x27;d sum up as &quot;Went to see him 8? Times back in 2019.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Gordon drove up to Vegas midweek for an EDC Week club night. The first RL Grime wristband on his record, and the start of a year he&#x27;d sum up as &quot;Went to see him 8? Times back in 2019.&quot;</p></div></div></button><button class="wb" id="wb1" style="--c:#c8ff3d" aria-label="EDC Las Vegas, May 17-19, 2019"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">EDC 2019</div><h3>EDC Las Vegas</h3><div class="meta">May 17-19, 2019 &middot; Las Vegas Motor Speedway</div><span class="nojs-story">Three days under the electric sky. Before the trip he wrote that RL Grime was one of the artists he&#x27;d see three times in two weeks.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Three days under the electric sky. Before the trip he wrote that RL Grime was one of the artists he&#x27;d see three times in two weeks.</p></div></div></button><button class="wb" id="wb2" style="--c:#7fe7ff" aria-label="RL Grime at Exchange LA, Sat May 25, 2019"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Exchange</div><h3>RL Grime at Exchange LA</h3><div class="meta">Sat May 25, 2019 &middot; Downtown LA</div><span class="nojs-story">RL Grime with Hex Cougar and Someone&#x27;s Daughter in an old stock exchange. Gordon was dead center under the disco ball. His review: &quot;RL Grime was everything.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>RL Grime with Hex Cougar and Someone&#x27;s Daughter in an old stock exchange. Gordon was dead center under the disco ball. His review: &quot;RL Grime was everything.&quot;</p></div></div></button><button class="wb" id="wb3" style="--c:#b79bff" aria-label="An early-summer RL set, June 2019"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Summer 2019</div><h3>An early-summer RL set</h3><div class="meta">June 2019 &middot; Venue unconfirmed</div><span class="nojs-story">The venue is lost to time, but the review survived: &quot;fantastic, he always finishes so strong... he is right in MY sweet spot.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>The venue is lost to time, but the review survived: &quot;fantastic, he always finishes so strong... he is right in MY sweet spot.&quot;</p></div></div></button><button class="wb" id="wb4" style="--c:#ff6a1a" aria-label="HARD Summer, Aug 3-4, 2019"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">HARD 2019</div><h3>HARD Summer</h3><div class="meta">Aug 3-4, 2019 &middot; Fontana, California</div><span class="nojs-story">HARD Summer weekend, with RL on Gordon&#x27;s must-see list. A year later he was still sharing the recording of that set.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>HARD Summer weekend, with RL on Gordon&#x27;s must-see list. A year later he was still sharing the recording of that set.</p></div></div></button><button class="wb" id="wb5" style="--c:#c8ff3d" aria-label="Austin City Limits, Weekend 1, Fri Oct 4, 2019"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">ACL 2019</div><h3>Austin City Limits, Weekend 1</h3><div class="meta">Fri Oct 4, 2019 &middot; Zilker Park, Austin</div><span class="nojs-story">A Friday at ACL with his Houston friends. Friends he wouldn&#x27;t meet for three more years were filming in the same RL Grime crowd.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A Friday at ACL with his Houston friends. Friends he wouldn&#x27;t meet for three more years were filming in the same RL Grime crowd.</p></div></div></button><button class="wb" id="wb6" style="--c:#8b5cff" aria-label="EDC Orlando, a birthday RL set, Nov 8-10, 2019"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">EDC Orlando</div><h3>EDC Orlando, a birthday RL set</h3><div class="meta">Nov 8-10, 2019 &middot; Tinker Field, Orlando</div><span class="nojs-story">&quot;Seeing RL for my birthday!&quot; He later called it &quot;an incredible night of friends, RL Grime, Alison Wonderland&#x27;s best set of the year&quot; in a crowd of 50,000.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>&quot;Seeing RL for my birthday!&quot; He later called it &quot;an incredible night of friends, RL Grime, Alison Wonderland&#x27;s best set of the year&quot; in a crowd of 50,000.</p></div></div></button><button class="wb" id="wb7" style="--c:#7fe7ff" aria-label="Sable Valley LA, Wed Nov 13, 2019"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Sable Valley LA</div><h3>Sable Valley LA</h3><div class="meta">Wed Nov 13, 2019 &middot; The 1720, Los Angeles</div><span class="nojs-story">The label&#x27;s own night. The presale sold out in two minutes, a friend got him in, and Gordon took an Uber over after teaching his 7 PM class, in a Sable Valley shirt. His text from the floor: &quot;Howdy from RL Grime LA.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>The label&#x27;s own night. The presale sold out in two minutes, a friend got him in, and Gordon took an Uber over after teaching his 7 PM class, in a Sable Valley shirt. His text from the floor: &quot;Howdy from RL Grime LA.&quot;</p></div></div></button><button class="wb" id="wb8" style="--c:#b79bff" aria-label="The first Sable Valley livestream, Sat May 30, 2020"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">SV Stream</div><h3>The first Sable Valley livestream</h3><div class="meta">Sat May 30, 2020 &middot; A Zoom room, everywhere</div><span class="nojs-story">Lockdown. Gordon, a moderator in the Sable Valley Discord, hosted a Zoom watch party so the crew could rave from their living rooms.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Lockdown. Gordon, a moderator in the Sable Valley Discord, hosted a Zoom watch party so the crew could rave from their living rooms.</p></div></div></button><button class="wb" id="wb9" style="--c:#c8ff3d" aria-label="A Sable Valley night before HARD Summer, Fri Jul 30, 2021"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">SV Pre-HARD</div><h3>A Sable Valley night before HARD Summer</h3><div class="meta">Fri Jul 30, 2021 &middot; Los Angeles</div><span class="nojs-story">The first show back. Gordon ended up dancing next to the Sable Valley A&amp;R who had found REMNANT.exe on SoundCloud, both of them watching that discovery kill it live.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>The first show back. Gordon ended up dancing next to the Sable Valley A&amp;R who had found REMNANT.exe on SoundCloud, both of them watching that discovery kill it live.</p></div></div></button><button class="wb" id="wb10" style="--c:#ff6a1a" aria-label="Halloween X, Oct 28, 2021"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Halloween X</div><h3>Halloween X</h3><div class="meta">Oct 28, 2021 &middot; Hollywood Palladium, LA</div><span class="nojs-story">The tenth Halloween show. In Gordon&#x27;s words: &quot;the hardcore RL fans from the internet just recognized me and pulled me in dead center no pushing #bestlife&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>The tenth Halloween show. In Gordon&#x27;s words: &quot;the hardcore RL fans from the internet just recognized me and pulled me in dead center no pushing #bestlife&quot;</p></div></div></button><button class="wb" id="wb11" style="--c:#b79bff" aria-label="RL Grime, Juelz and Montell2099, Fri Nov 5, 2021"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Brooklyn</div><h3>RL Grime, Juelz and Montell2099</h3><div class="meta">Fri Nov 5, 2021 &middot; Brooklyn Mirage, Avant Gardner</div><span class="nojs-story">A Sable Valley takeover in New York for his birthday, with his son Brennan, who bought the tickets, and friends at a Sable Valley table. He called it his &quot;RL pilgrimage.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A Sable Valley takeover in New York for his birthday, with his son Brennan, who bought the tickets, and friends at a Sable Valley table. He called it his &quot;RL pilgrimage.&quot;</p></div></div></button><button class="wb" id="wb12" style="--c:#c8ff3d" aria-label="Countdown NYE, Dec 31, 2021"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Countdown</div><h3>Countdown NYE</h3><div class="meta">Dec 31, 2021 &middot; Southern California</div><span class="nojs-story">Ringing in 2022 with Brennan and an RL Grime set. Two weeks earlier Gordon had written: &quot;RL Grime is the anchor for me.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Ringing in 2022 with Brennan and an RL Grime set. Two weeks earlier Gordon had written: &quot;RL Grime is the anchor for me.&quot;</p></div></div></button><button class="wb mas" id="wb13" style="--c:#8b5cff" aria-label="RL Grime at Exchange LA, Thu Feb 10, 2022"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Exchange 2</div><h3>RL Grime at Exchange LA</h3><div class="meta">Thu Feb 10, 2022 &middot; Downtown LA</div><span class="nojs-story">Back to the old stock exchange, this time with Mason. Gordon&#x27;s live update: &quot;We are at RL Grimer.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Back to the old stock exchange, this time with Mason. Gordon&#x27;s live update: &quot;We are at RL Grimer.&quot;</p></div></div></button><button class="wb" id="wb14" style="--c:#7fe7ff" aria-label="ILLfest: RL Grime b2b Baauer, Feb 18-19, 2022"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">ILLfest</div><h3>ILLfest: RL Grime b2b Baauer</h3><div class="meta">Feb 18-19, 2022 &middot; Circuit of the Americas, Austin</div><span class="nojs-story">Two trap pioneers trading tracks back to back on a racetrack in Texas, with Brennan.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Two trap pioneers trading tracks back to back on a racetrack in Texas, with Brennan.</p></div></div></button><button class="wb" id="wb15" style="--c:#b79bff" aria-label="Montell2099 at Temple, Thu Jun 9, 2022"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Temple SF</div><h3>Montell2099 at Temple</h3><div class="meta">Thu Jun 9, 2022 &middot; Temple, San Francisco</div><span class="nojs-story">A Sable Valley artist&#x27;s club night. Gordon, on his way: &quot;headed to temple now to see montel2099 sable Valley.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A Sable Valley artist&#x27;s club night. Gordon, on his way: &quot;headed to temple now to see montel2099 sable Valley.&quot;</p></div></div></button><button class="wb" id="wb16" style="--c:#ff6a1a" aria-label="Halloween XI: Dead Space, Oct 27, 2022"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Halloween XI</div><h3>Halloween XI: Dead Space</h3><div class="meta">Oct 27, 2022 &middot; Kia Forum, Inglewood</div><span class="nojs-story">Halloween at the Forum with Brennan, who flew in from New York for it, in the pink RL Grime jersey Mason gave him for his birthday.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Halloween at the Forum with Brennan, who flew in from New York for it, in the pink RL Grime jersey Mason gave him for his birthday.</p></div></div></button><button class="wb" id="wb17" style="--c:#c8ff3d" aria-label="Second Sky, Halloween weekend 2022"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Second Sky</div><h3>Second Sky</h3><div class="meta">Halloween weekend 2022 &middot; Oakland</div><span class="nojs-story">Two Halloween RL shows in one week. Gordon&#x27;s recap of the night: &quot;Skrillex into G Jones b2b Virtual Self into RL Grime.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Two Halloween RL shows in one week. Gordon&#x27;s recap of the night: &quot;Skrillex into G Jones b2b Virtual Self into RL Grime.&quot;</p></div></div></button><button class="wb" id="wb18" style="--c:#8b5cff" aria-label="Sable Valley pop-up at the Echoplex, Thu Jul 6, 2023"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">SV Echoplex</div><h3>Sable Valley pop-up at the Echoplex</h3><div class="meta">Thu Jul 6, 2023 &middot; Echoplex, LA</div><span class="nojs-story">A sold-out small-room pop-up with Brownies and Lemonade: RL Grime and Juelz sharing the midnight slot, with Jawns on the bill. The family up close.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A sold-out small-room pop-up with Brownies and Lemonade: RL Grime and Juelz sharing the midnight slot, with Jawns on the bill. The family up close.</p></div></div></button><button class="wb" id="wb19" style="--c:#7fe7ff" aria-label="Shambhala, Jul 2023"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Shambhala</div><h3>Shambhala</h3><div class="meta">Jul 2023 &middot; Salmo, British Columbia</div><span class="nojs-story">A festival on a forest farm in the Canadian mountains, and an RL Grime set Gordon still rewatches: &quot;I only want to live in the universe where we see RL Grime sets together.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A festival on a forest farm in the Canadian mountains, and an RL Grime set Gordon still rewatches: &quot;I only want to live in the universe where we see RL Grime sets together.&quot;</p></div></div></button><button class="wb" id="wb20" style="--c:#b79bff" aria-label="RL Grime Presents PLAYlive, Nov 24, 2023"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">PLAYlive</div><h3>RL Grime Presents PLAYlive</h3><div class="meta">Nov 24, 2023 &middot; Ontario, California</div><span class="nojs-story">The live show for PLAY, the album built in three parts: APEX, GRID and RUSH. It was designed like a game, which makes it John&#x27;s album too.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>The live show for PLAY, the album built in three parts: APEX, GRID and RUSH. It was designed like a game, which makes it John&#x27;s album too.</p></div></div></button><button class="wb" id="wb21" style="--c:#c8ff3d" aria-label="RL Grime at Academy, Sat Mar 2, 2024"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Academy</div><h3>RL Grime at Academy</h3><div class="meta">Sat Mar 2, 2024 &middot; Hollywood</div><span class="nojs-story">A Hollywood club night, close enough to see his hands on the mixer.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A Hollywood club night, close enough to see his hands on the mixer.</p></div></div></button><button class="wb" id="wb22" style="--c:#ff6a1a" aria-label="Beyond Wonderland Chicago, Sat Jun 1, 2024"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">BW Chicago</div><h3>Beyond Wonderland Chicago</h3><div class="meta">Sat Jun 1, 2024 &middot; Chicago</div><span class="nojs-story">A Chicago festival Saturday. Gordon&#x27;s two-line review: &quot;BW was rl grime Tiesto and others.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A Chicago festival Saturday. Gordon&#x27;s two-line review: &quot;BW was rl grime Tiesto and others.&quot;</p></div></div></button><button class="wb" id="wb23" style="--c:#8b5cff" aria-label="Breakaway SF, Sat Oct 26, 2024"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Breakaway SF</div><h3>Breakaway SF</h3><div class="meta">Sat Oct 26, 2024 &middot; Bill Graham Civic, San Francisco</div><span class="nojs-story">Leg one of what Gordon called his &quot;RL Grime California Triple Crown&quot;: San Francisco, San Diego and LA. His verdict: &quot;rl&#x27;s set was a masterpiece.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Leg one of what Gordon called his &quot;RL Grime California Triple Crown&quot;: San Francisco, San Diego and LA. His verdict: &quot;rl&#x27;s set was a masterpiece.&quot;</p></div></div></button><button class="wb mas" id="wb24" style="--c:#7fe7ff" aria-label="San Diego Homecoming, Dec 7-8, 2024"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">SD Homecoming</div><h3>San Diego Homecoming</h3><div class="meta">Dec 7-8, 2024 &middot; Snapdragon Stadium, San Diego</div><span class="nojs-story">Leg two: ISOxo and Knock2&#x27;s two-night homecoming, with RL Grime on the bill and Mason there on Sunday. This is the show that grew into NiteHarts.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Leg two: ISOxo and Knock2&#x27;s two-night homecoming, with RL Grime on the bill and Mason there on Sunday. This is the show that grew into NiteHarts.</p></div></div></button><button class="wb" id="wb25" style="--c:#ff6a1a" aria-label="RL Grime at the Palladium, Fri Dec 20, 2024"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Palladium</div><h3>RL Grime at the Palladium</h3><div class="meta">Fri Dec 20, 2024 &middot; Hollywood Palladium, LA</div><span class="nojs-story">Leg three, the crown: a 95-minute set, 11:35 PM to 1:10 AM.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Leg three, the crown: a 95-minute set, 11:35 PM to 1:10 AM.</p></div></div></button><button class="wb" id="wb26" style="--c:#c8ff3d" aria-label="RL Grime pop-up, Wed Sep 10, 2025"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Pop-up</div><h3>RL Grime pop-up</h3><div class="meta">Wed Sep 10, 2025 &middot; The Loft at Academy, Hollywood</div><span class="nojs-story">A surprise RSVP pop-up with 33 Below. Gordon got in off the waitlist, ended up in the second row, and stopped with the neighbors on the way home.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>A surprise RSVP pop-up with 33 Below. Gordon got in off the waitlist, ended up in the second row, and stopped with the neighbors on the way home.</p></div></div></button><button class="wb mas" id="wb27" style="--c:#b79bff" aria-label="RL Grime at Academy, Sat Dec 27, 2025"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Academy 2</div><h3>RL Grime at Academy</h3><div class="meta">Sat Dec 27, 2025 &middot; Hollywood</div><span class="nojs-story">Closing out 2025, with Mason there too. Gordon, seven minutes before the set: &quot;7 minutes until RL Grime. HAPPINESS.&quot;</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>Closing out 2025, with Mason there too. Gordon, seven minutes before the set: &quot;7 minutes until RL Grime. HAPPINESS.&quot;</p></div></div></button><button class="wb mas" id="wb28" style="--c:#ff6a1a" aria-label="HARD Summer, Sunday, Sun Aug 2, 2026"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">HARD 2026</div><h3>HARD Summer, Sunday</h3><div class="meta">Sun Aug 2, 2026 &middot; Hollywood Park, Inglewood</div><span class="nojs-story">VIP for the Sunday, with Mason, and RL Grime on the bill. Two months later, NiteHarts.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>VIP for the Sunday, with Mason, and RL Grime on the bill. Two months later, NiteHarts.</p></div></div></button><button class="wb" id="wb29" style="--c:#8b5cff" aria-label="NiteHarts Latenite: ISOKNOCK b2b RL Grime, Sun Oct 11, 2026"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">Latenite</div><h3>NiteHarts Latenite: ISOKNOCK b2b RL Grime</h3><div class="meta">Sun Oct 11, 2026 &middot; Pechanga Arena, San Diego</div><span class="nojs-story">The night this was made: RL playing back to back with ISOxo and Knock2, whose Sable Valley track &quot;niteharts&quot; shares the festival&#x27;s name.</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>The night this was made: RL playing back to back with ISOxo and Knock2, whose Sable Valley track &quot;niteharts&quot; shares the festival&#x27;s name.</p></div></div></button></div>
+  </section>
+
+  <section id="loadout">
+    <div class="kicker">Inventory &middot; Gordon's loadout</div>
+    <h2>Gear from the valley</h2>
+    <p class="lede">Every RL Grime regular carries a kit. Here's Gordon's.</p>
+    <div class="loadout" id="loadgrid"><div class="item" style="--c:#ff8bd1"><div class="rar">Legendary</div><h3>Pink trippy RL Grime jersey</h3><p>A birthday gift from Mason. &quot;I love every time I wear my RL Grime... people stop me and i get to talk about my best friend!!&quot;</p></div><div class="item" style="--c:#ff6a1a"><div class="rar">Epic</div><h3>Black and orange Halloween jersey</h3><p>The Halloween-series jersey, standard issue for October.</p></div><div class="item" style="--c:#c8ff3d"><div class="rar">Rare</div><h3>A drawer of Sable Valley shirts</h3><p>&quot;I have so many RL Grime shirts now that even my mother in law knows what Sable Valley is. MOM it&#x27;s like the Motown of Electronic Dance Music.&quot;</p></div><div class="item" style="--c:#8b5cff"><div class="rar">Mythic</div><h3>Sable Valley Discord mod badge</h3><p>Gordon was a moderator in the label&#x27;s Discord, where a lot of the RL Grime crew first found each other.</p></div><div class="item" style="--c:#7fe7ff"><div class="rar">Achievement</div><h3>1,000,000 replays</h3><p>On RL&#x27;s EDC Mexico set, which he streamed from home: &quot;about 1 m of the views ... are me.&quot; (He&#x27;s joking. Mostly.)</p></div></div>
   </section>
 
   <section id="drop">
@@ -197,7 +233,7 @@ body.shake{animation:shake .5s}
   <section id="why">
     <div class="kicker">Save file</div>
     <h2>What he means to us</h2>
-    <div class="note" id="note"><p>John, here is the short version: RL Grime is the anchor. I have seen him many, many, many wonderful times, from a Vegas club to a forest in Canada, through Halloween at the Palladium and the Forum, and tonight in San Diego.</p><p>What I love is the build. He makes a whole room hold its breath and then lets it go together. That is what these nights have been for me and my people: Brennan beside me in Brooklyn and Austin, Mason in Hollywood, strangers pulling me to the center of the floor.</p><p>You are a gamer, so you already know the feeling: the boss fight you have been building toward, and the moment it lands. That is an RL Grime drop. I can't wait to share one with you.</p><p class="sig">LYMI, Gordon</p></div>
+    <div class="note" id="note"><p>John, here is the short version: RL Grime is the anchor. I have seen him 30 times that I can count, eight in 2019 alone: from a Vegas club to a forest in Canada, Halloween at the Palladium and the Forum, a Triple Crown up and down California, and tonight in San Diego.</p><p>What I love is the build. He makes a whole room hold its breath and then lets it go together. That is what these nights have been for me and my people: Brennan beside me in Brooklyn and Austin, Mason in Hollywood, strangers pulling me to the center of the floor.</p><p>You are a gamer, so you already know the feeling: the boss fight you have been building toward, and the moment it lands. That is an RL Grime drop. I can't wait to share one with you.</p><p class="sig">LYMI, Gordon</p></div>
   </section>
 
   <p class="foot" id="foot">Made by Darby for Gordon. His nights come from his own tickets and messages. The history comes from Wikipedia, DJ Mag, EDM Identity, Dancing Astronaut, JamBase and Songkick. Future dates are as listed on October 11, 2026, and can change. The Sable Valley crew is the label's release history, not an official roster, and the player icons are generated patterns, not portraits.</p>
@@ -206,23 +242,244 @@ body.shake{animation:shake .5s}
 
 <script>window.VALLEY={
 shows:[
-{date:"May 2019",event:"RL Grime at Intrigue, EDC Week",band:"EDC Week",place:"Las Vegas",color:"#8b5cff",story:"EDC Week in Vegas, and the first RL Grime night on Gordon's record. Three months later he texted: \"all I want in the world is to meet RL Grime.\""},
-{date:"Fri Oct 4, 2019",event:"Austin City Limits, Weekend 1",band:"ACL 2019",place:"Zilker Park, Austin",color:"#c8ff3d",story:"A Friday at ACL with his Houston friends. RL Grime played that afternoon, and friends Gordon would not meet for three more years were filming in the same crowd."},
-{date:"May 30, 2020",event:"The first Sable Valley stream",band:"SV Stream",place:"A Zoom room, everywhere",color:"#7fe7ff",story:"Lockdown. When the label threw its first livestream, Gordon hosted a Zoom watch party so the whole crew could rave from their living rooms."},
-{date:"Oct 28, 2021",event:"Halloween X",band:"Halloween X",place:"Hollywood Palladium, LA",color:"#ff6a1a",story:"The tenth Halloween show. In Gordon's words: \"the hardcore RL fans from the internet just recognized me and pulled me in dead center no pushing #bestlife\""},
-{date:"Nov 5, 2021",event:"RL Grime, Juelz and Montell2099",band:"Brooklyn",place:"Avant Gardner, Brooklyn",color:"#b79bff",story:"A Sable Valley takeover in New York: RL plus two of his label artists, with Gordon's son Brennan and friends at a Sable Valley table. Part of what Gordon called his \"RL pilgrimage\" for his birthday."},
-{date:"Dec 31, 2021",event:"Countdown NYE",band:"Countdown",place:"Southern California",color:"#c8ff3d",story:"Ringing in 2022 with Brennan and an RL Grime set. Two weeks earlier Gordon had written: \"RL Grime is the anchor for me.\""},
-{date:"Feb 10, 2022",event:"RL Grime at Exchange LA",band:"Exchange LA",place:"Downtown LA",color:"#8b5cff",story:"A club night in an old stock exchange building, with Mason."},
-{date:"Feb 18-19, 2022",event:"ILLfest: RL Grime b2b Baauer",band:"ILLfest",place:"Circuit of the Americas, Austin",color:"#7fe7ff",story:"Two trap pioneers trading tracks back to back on a racetrack in Texas, with Brennan."},
-{date:"Oct 27, 2022",event:"Halloween: Dead Space",band:"Dead Space",place:"Kia Forum, Inglewood",color:"#ff6a1a",story:"Halloween at the Forum with Brennan, in the pink RL Grime jersey Mason gave him for his birthday. \"People stop me\" about that jersey, he says."},
-{date:"Jul 6, 2023",event:"Sable Valley Breach Party",band:"SV Breach",place:"Echoplex, LA",color:"#c8ff3d",story:"A small-room label party: RL Grime and Juelz sharing the midnight to 1:30 slot, with Jawns on the bill. The family up close."},
-{date:"Jul 2023",event:"Shambhala",band:"Shambhala",place:"Salmo, British Columbia",color:"#b79bff",story:"A festival in a forest farm in the Canadian mountains, and an RL Grime set with the Shambhala crew."},
-{date:"Nov 24, 2023",event:"RL Grime Presents PLAYlive",band:"PLAYlive",place:"Ontario, California",color:"#8b5cff",story:"The live show for PLAY, the album built in three parts: APEX, GRID and RUSH. It is designed like a game, which makes it John's album too."},
-{date:"Mar 2, 2024",event:"RL Grime at Academy",band:"Academy",place:"Hollywood",color:"#7fe7ff",story:"A Hollywood club night, the kind where you can see his hands on the mixer."},
-{date:"Dec 20, 2024",event:"RL Grime at the Palladium",band:"Palladium",place:"Hollywood Palladium, LA",color:"#ff6a1a",story:"Back at the Palladium for a 95-minute set, 11:35 PM to 1:10 AM."},
-{date:"Dec 27, 2025",event:"RL Grime at Academy",band:"Academy 2",place:"Hollywood",color:"#c8ff3d",story:"Closing out 2025 in Hollywood, with Mason there too."},
-{date:"Sun Oct 11, 2026",event:"NiteHarts Latenite: ISOKNOCK b2b RL Grime",band:"Latenite",place:"Pechanga Arena, San Diego",color:"#b79bff",story:"Tonight, the night this was made: RL playing back to back with ISOxo and Knock2, whose track \"niteharts\" came out on Sable Valley and shares the festival's name."}
+{
+"date": "Wed May 15, 2019",
+"event": "EDC Week: RL Grime at Intrigue",
+"band": "Intrigue",
+"place": "Las Vegas",
+"color": "#8b5cff",
+"story": "Gordon drove up to Vegas midweek for an EDC Week club night. The first RL Grime wristband on his record, and the start of a year he'd sum up as \"Went to see him 8? Times back in 2019.\""
+},
+{
+"date": "May 17-19, 2019",
+"event": "EDC Las Vegas",
+"band": "EDC 2019",
+"place": "Las Vegas Motor Speedway",
+"color": "#c8ff3d",
+"story": "Three days under the electric sky. Before the trip he wrote that RL Grime was one of the artists he'd see three times in two weeks."
+},
+{
+"date": "Sat May 25, 2019",
+"event": "RL Grime at Exchange LA",
+"band": "Exchange",
+"place": "Downtown LA",
+"color": "#7fe7ff",
+"story": "RL Grime with Hex Cougar and Someone's Daughter in an old stock exchange. Gordon was dead center under the disco ball. His review: \"RL Grime was everything.\""
+},
+{
+"date": "June 2019",
+"event": "An early-summer RL set",
+"band": "Summer 2019",
+"place": "Venue unconfirmed",
+"color": "#b79bff",
+"story": "The venue is lost to time, but the review survived: \"fantastic, he always finishes so strong... he is right in MY sweet spot.\""
+},
+{
+"date": "Aug 3-4, 2019",
+"event": "HARD Summer",
+"band": "HARD 2019",
+"place": "Fontana, California",
+"color": "#ff6a1a",
+"story": "HARD Summer weekend, with RL on Gordon's must-see list. A year later he was still sharing the recording of that set."
+},
+{
+"date": "Fri Oct 4, 2019",
+"event": "Austin City Limits, Weekend 1",
+"band": "ACL 2019",
+"place": "Zilker Park, Austin",
+"color": "#c8ff3d",
+"story": "A Friday at ACL with his Houston friends. Friends he wouldn't meet for three more years were filming in the same RL Grime crowd."
+},
+{
+"date": "Nov 8-10, 2019",
+"event": "EDC Orlando, a birthday RL set",
+"band": "EDC Orlando",
+"place": "Tinker Field, Orlando",
+"color": "#8b5cff",
+"story": "\"Seeing RL for my birthday!\" He later called it \"an incredible night of friends, RL Grime, Alison Wonderland's best set of the year\" in a crowd of 50,000."
+},
+{
+"date": "Wed Nov 13, 2019",
+"event": "Sable Valley LA",
+"band": "Sable Valley LA",
+"place": "The 1720, Los Angeles",
+"color": "#7fe7ff",
+"story": "The label's own night. The presale sold out in two minutes, a friend got him in, and Gordon took an Uber over after teaching his 7 PM class, in a Sable Valley shirt. His text from the floor: \"Howdy from RL Grime LA.\""
+},
+{
+"date": "Sat May 30, 2020",
+"event": "The first Sable Valley livestream",
+"band": "SV Stream",
+"place": "A Zoom room, everywhere",
+"color": "#b79bff",
+"story": "Lockdown. Gordon, a moderator in the Sable Valley Discord, hosted a Zoom watch party so the crew could rave from their living rooms."
+},
+{
+"date": "Fri Jul 30, 2021",
+"event": "A Sable Valley night before HARD Summer",
+"band": "SV Pre-HARD",
+"place": "Los Angeles",
+"color": "#c8ff3d",
+"story": "The first show back. Gordon ended up dancing next to the Sable Valley A&R who had found REMNANT.exe on SoundCloud, both of them watching that discovery kill it live."
+},
+{
+"date": "Oct 28, 2021",
+"event": "Halloween X",
+"band": "Halloween X",
+"place": "Hollywood Palladium, LA",
+"color": "#ff6a1a",
+"story": "The tenth Halloween show. In Gordon's words: \"the hardcore RL fans from the internet just recognized me and pulled me in dead center no pushing #bestlife\""
+},
+{
+"date": "Fri Nov 5, 2021",
+"event": "RL Grime, Juelz and Montell2099",
+"band": "Brooklyn",
+"place": "Brooklyn Mirage, Avant Gardner",
+"color": "#b79bff",
+"story": "A Sable Valley takeover in New York for his birthday, with his son Brennan, who bought the tickets, and friends at a Sable Valley table. He called it his \"RL pilgrimage.\""
+},
+{
+"date": "Dec 31, 2021",
+"event": "Countdown NYE",
+"band": "Countdown",
+"place": "Southern California",
+"color": "#c8ff3d",
+"story": "Ringing in 2022 with Brennan and an RL Grime set. Two weeks earlier Gordon had written: \"RL Grime is the anchor for me.\""
+},
+{
+"mason": true,
+"date": "Thu Feb 10, 2022",
+"event": "RL Grime at Exchange LA",
+"band": "Exchange 2",
+"place": "Downtown LA",
+"color": "#8b5cff",
+"story": "Back to the old stock exchange, this time with Mason. Gordon's live update: \"We are at RL Grimer.\""
+},
+{
+"date": "Feb 18-19, 2022",
+"event": "ILLfest: RL Grime b2b Baauer",
+"band": "ILLfest",
+"place": "Circuit of the Americas, Austin",
+"color": "#7fe7ff",
+"story": "Two trap pioneers trading tracks back to back on a racetrack in Texas, with Brennan."
+},
+{
+"date": "Thu Jun 9, 2022",
+"event": "Montell2099 at Temple",
+"band": "Temple SF",
+"place": "Temple, San Francisco",
+"color": "#b79bff",
+"story": "A Sable Valley artist's club night. Gordon, on his way: \"headed to temple now to see montel2099 sable Valley.\""
+},
+{
+"date": "Oct 27, 2022",
+"event": "Halloween XI: Dead Space",
+"band": "Halloween XI",
+"place": "Kia Forum, Inglewood",
+"color": "#ff6a1a",
+"story": "Halloween at the Forum with Brennan, who flew in from New York for it, in the pink RL Grime jersey Mason gave him for his birthday."
+},
+{
+"date": "Halloween weekend 2022",
+"event": "Second Sky",
+"band": "Second Sky",
+"place": "Oakland",
+"color": "#c8ff3d",
+"story": "Two Halloween RL shows in one week. Gordon's recap of the night: \"Skrillex into G Jones b2b Virtual Self into RL Grime.\""
+},
+{
+"date": "Thu Jul 6, 2023",
+"event": "Sable Valley pop-up at the Echoplex",
+"band": "SV Echoplex",
+"place": "Echoplex, LA",
+"color": "#8b5cff",
+"story": "A sold-out small-room pop-up with Brownies and Lemonade: RL Grime and Juelz sharing the midnight slot, with Jawns on the bill. The family up close."
+},
+{
+"date": "Jul 2023",
+"event": "Shambhala",
+"band": "Shambhala",
+"place": "Salmo, British Columbia",
+"color": "#7fe7ff",
+"story": "A festival on a forest farm in the Canadian mountains, and an RL Grime set Gordon still rewatches: \"I only want to live in the universe where we see RL Grime sets together.\""
+},
+{
+"date": "Nov 24, 2023",
+"event": "RL Grime Presents PLAYlive",
+"band": "PLAYlive",
+"place": "Ontario, California",
+"color": "#b79bff",
+"story": "The live show for PLAY, the album built in three parts: APEX, GRID and RUSH. It was designed like a game, which makes it John's album too."
+},
+{
+"date": "Sat Mar 2, 2024",
+"event": "RL Grime at Academy",
+"band": "Academy",
+"place": "Hollywood",
+"color": "#c8ff3d",
+"story": "A Hollywood club night, close enough to see his hands on the mixer."
+},
+{
+"date": "Sat Jun 1, 2024",
+"event": "Beyond Wonderland Chicago",
+"band": "BW Chicago",
+"place": "Chicago",
+"color": "#ff6a1a",
+"story": "A Chicago festival Saturday. Gordon's two-line review: \"BW was rl grime Tiesto and others.\""
+},
+{
+"date": "Sat Oct 26, 2024",
+"event": "Breakaway SF",
+"band": "Breakaway SF",
+"place": "Bill Graham Civic, San Francisco",
+"color": "#8b5cff",
+"story": "Leg one of what Gordon called his \"RL Grime California Triple Crown\": San Francisco, San Diego and LA. His verdict: \"rl's set was a masterpiece.\""
+},
+{
+"mason": true,
+"date": "Dec 7-8, 2024",
+"event": "San Diego Homecoming",
+"band": "SD Homecoming",
+"place": "Snapdragon Stadium, San Diego",
+"color": "#7fe7ff",
+"story": "Leg two: ISOxo and Knock2's two-night homecoming, with RL Grime on the bill and Mason there on Sunday. This is the show that grew into NiteHarts."
+},
+{
+"date": "Fri Dec 20, 2024",
+"event": "RL Grime at the Palladium",
+"band": "Palladium",
+"place": "Hollywood Palladium, LA",
+"color": "#ff6a1a",
+"story": "Leg three, the crown: a 95-minute set, 11:35 PM to 1:10 AM."
+},
+{
+"date": "Wed Sep 10, 2025",
+"event": "RL Grime pop-up",
+"band": "Pop-up",
+"place": "The Loft at Academy, Hollywood",
+"color": "#c8ff3d",
+"story": "A surprise RSVP pop-up with 33 Below. Gordon got in off the waitlist, ended up in the second row, and stopped with the neighbors on the way home."
+},
+{
+"mason": true,
+"date": "Sat Dec 27, 2025",
+"event": "RL Grime at Academy",
+"band": "Academy 2",
+"place": "Hollywood",
+"color": "#b79bff",
+"story": "Closing out 2025, with Mason there too. Gordon, seven minutes before the set: \"7 minutes until RL Grime. HAPPINESS.\""
+},
+{"date": "Sun Aug 2, 2026", "event": "HARD Summer, Sunday", "band": "HARD 2026", "place": "Hollywood Park, Inglewood", "color": "#ff6a1a", "story": "VIP for the Sunday, with Mason, and RL Grime on the bill. Two months later, NiteHarts.", "mason": true},
+{
+"date": "Sun Oct 11, 2026",
+"event": "NiteHarts Latenite: ISOKNOCK b2b RL Grime",
+"band": "Latenite",
+"place": "Pechanga Arena, San Diego",
+"color": "#8b5cff",
+"story": "The night this was made: RL playing back to back with ISOxo and Knock2, whose Sable Valley track \"niteharts\" shares the festival's name."
+}
 ],
+loadout:[{"rar": "Legendary", "c": "#ff8bd1", "name": "Pink trippy RL Grime jersey", "note": "A birthday gift from Mason. \"I love every time I wear my RL Grime... people stop me and i get to talk about my best friend!!\""}, {"rar": "Epic", "c": "#ff6a1a", "name": "Black and orange Halloween jersey", "note": "The Halloween-series jersey, standard issue for October."}, {"rar": "Rare", "c": "#c8ff3d", "name": "A drawer of Sable Valley shirts", "note": "\"I have so many RL Grime shirts now that even my mother in law knows what Sable Valley is. MOM it's like the Motown of Electronic Dance Music.\""}, {"rar": "Mythic", "c": "#8b5cff", "name": "Sable Valley Discord mod badge", "note": "Gordon was a moderator in the label's Discord, where a lot of the RL Grime crew first found each other."}, {"rar": "Achievement", "c": "#7fe7ff", "name": "1,000,000 replays", "note": "On RL's EDC Mexico set, which he streamed from home: \"about 1 m of the views ... are me.\" (He's joking. Mostly.)"}],
 tracks:[
 {y:"2011",t:"Clockwork",note:"Henry Steinway, born in Los Angeles in 1991, records under the name Clockwork before reinventing himself.",cue:""},
 {y:"2012",t:"The trap turn",note:"With the WeDidIt crew he becomes RL Grime. The Grapes EP and his first Halloween mix arrive the same year.",cue:""},
@@ -257,8 +514,9 @@ next:[
 {when:"Level ???",what:"The next record",note:"No new album is announced yet. When it drops, this level unlocks."}
 ],
 p2:'<div class="hud" style="color:var(--acid)">Player 2 has joined</div><h3 style="margin-top:6px">Your first co-op level</h3><p style="margin:8px 0 0">Gordon\'s words, from a few years ago: <b>"I only want to live in the universe where we see RL Grime sets together."</b> John (and Adam), consider this your invitation to that universe. Start with Core and Reims, then come find us at the rail.</p>',
-note:'<p>John, here is the short version: RL Grime is the anchor. I have seen him many, many, many wonderful times, from a Vegas club to a forest in Canada, through Halloween at the Palladium and the Forum, and tonight in San Diego.</p><p>What I love is the build. He makes a whole room hold its breath and then lets it go together. That is what these nights have been for me and my people: Brennan beside me in Brooklyn and Austin, Mason in Hollywood, strangers pulling me to the center of the floor.</p><p>You are a gamer, so you already know the feeling: the boss fight you have been building toward, and the moment it lands. That is an RL Grime drop. I can\'t wait to share one with you.</p><p class="sig">LYMI, Gordon</p>',
-foot:'Made by Darby for Gordon. His nights come from his own tickets and messages. The history comes from Wikipedia, DJ Mag, EDM Identity, Dancing Astronaut, JamBase and Songkick. Future dates are as listed on October 11, 2026, and can change. The Sable Valley crew is the label\'s release history, not an official roster, and the player icons are generated patterns, not portraits.'
+note:'<p>John, here is the short version: RL Grime is the anchor. I have seen him 30 times that I can count, eight in 2019 alone: from a Vegas club to a forest in Canada, Halloween at the Palladium and the Forum, a Triple Crown up and down California, and tonight in San Diego.</p><p>What I love is the build. He makes a whole room hold its breath and then lets it go together. That is what these nights have been for me and my people: Brennan beside me in Brooklyn and Austin, Mason in Hollywood, strangers pulling me to the center of the floor.</p><p>You are a gamer, so you already know the feeling: the boss fight you have been building toward, and the moment it lands. That is an RL Grime drop. I can\'t wait to share one with you.</p><p class="sig">LYMI, Gordon</p>',
+foot:'Made by Darby for Gordon. His nights come from his own tickets and messages. The history comes from Wikipedia, DJ Mag, EDM Identity, Dancing Astronaut, JamBase and Songkick. Future dates are as listed on October 11, 2026, and can change. The Sable Valley crew is the label\'s release history, not an official roster, and the player icons are generated patterns, not portraits.',
+mason:{"hud": "1P: Mason &middot; From Gordon &middot; Best Friend Edition", "intro": "Mason, this one is for you: every RL Grime night Gordon can count (yours glow gold), plus the receipts, almost 27,000 texts deep, of why you are the best friend in the universe. His, specifically.", "bff": [{"k": "Level 1 &middot; June 2016", "t": "The first EDC", "q": "I was there at edc 2016 when gordon could not contain tears.", "w": "Mason, remembering it in 2023"}, {"k": "The title screen", "t": "December 22, 2020", "q": "You are the best friend in the universe. That is all.", "w": "Gordon to Mason"}, {"k": "Save point", "t": "Gordon's 51st birthday", "q": "I constantly feel like my truest self every time I'm with you.", "w": "Mason, November 9, 2021"}, {"k": "Side quest", "t": "Dodgeball", "q": "You introduced me to dodgeball. This whole tournament wouldn't exist in my world if you weren't my best friend.", "w": "Mason, January 2022"}, {"k": "Legendary drop", "t": "The pink trippy jersey", "q": "I love every time I wear my RL Grime... people stop me and i get to talk about my best friend!!", "w": "Gordon to Mason, July 16, 2022"}, {"k": "Halloween XI", "t": "The main act", "q": "the jersey is just the set dressing, the background arrangement? You are literally the actor, the main act... You are the reason that people are constantly drawn to you", "w": "Mason to Gordon, October 27, 2022"}, {"k": "Infinity count", "t": "A crowd of thousands", "q": "So 1 of the infinity best things about being your best friend is so many people stopping me in a crowd of thousands to tell me how much they love my RL Grime shirt", "w": "Gordon to Mason, November 12, 2023"}, {"k": "Co-op title", "t": "Thelma and Louise", "q": "Helloooooo Gordon aka best friend aka the Thelma to my Louise", "w": "Mason, March 8, 2025"}, {"k": "Co-op mode", "t": "Academy, Hollywood", "q": "I love being at rl grime shows with muh beeeeest friend", "w": "Mason, December 27, 2025"}, {"k": "Ten-year anniversary", "t": "Back to Alison, EDC 2026", "q": "We went there for our 10 year and I couldn't have asked for anything better in this world", "w": "Mason, May 2026, after the rail at Cosmic Meadow"}, {"k": "Endless mode", "t": "Best friend lunches", "q": "We have our whole lives ahead of us of best friend lunches", "w": "Mason, July 2021"}], "note": "<p>Mason, you are in every one of these, even the nights you weren't there, because I'm wearing the jersey you gave me and telling the whole crowd about my best friend.</p><p>Ten years ago you watched me cry at my first EDC. Since then: Exchange, Academy, the homecoming, HARD Summer, the rail at Cosmic Meadow. You told me the jersey is just set dressing and I'm the main act. Here's the truth back: you are the best friend in the universe. That is all. Every drop is better next to you.</p><p class=\"sig\">LYMI, Gordon</p>", "p2": "<div class=\"hud\" style=\"color:var(--acid)\">Player 2 locked in</div><h3 style=\"margin-top:6px\">Next co-op level</h3><p style=\"margin:8px 0 0\">NiteHarts was the latest. The next RL night is already on the calendar somewhere, and it has your name on the guest list.</p>"}
 };
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -278,7 +536,7 @@ foot:'Made by Darby for Gordon. His nights come from his own tickets and message
   /* ---------- wall ---------- */
   var S=D.shows; $('total').textContent=S.length;
   $('wallgrid').innerHTML=S.map(function(s,i){
-    return '<button class="wb" id="wb'+i+'" style="--c:'+s.color+'" aria-label="'+esc(s.event)+', '+esc(s.date)+'"><div class="in"><div class="f"><span class="got">Caught</span><div class="strap">'+esc(s.band||s.event)+'</div><h3>'+esc(s.event)+'</h3><div class="meta">'+esc(s.date)+' &middot; '+esc(s.place)+'</div><span class="nojs-story">'+esc(s.story)+'</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>'+esc(s.story)+'</p>'+(s.with?'<p class="meta">Squad: '+esc(s.with)+'</p>':'')+'</div></div></button>';
+    return '<button class="wb'+(s.mason?' mas':'')+'" id="wb'+i+'" style="--c:'+s.color+'" aria-label="'+esc(s.event)+', '+esc(s.date)+'"><div class="in"><div class="f"><span class="mz">&#9733; Mason</span><span class="got">Caught</span><div class="strap">'+esc(s.band||s.event)+'</div><h3>'+esc(s.event)+'</h3><div class="meta">'+esc(s.date)+' &middot; '+esc(s.place)+'</div><span class="nojs-story">'+esc(s.story)+'</span><span class="tap">Tap to flip &#8635;</span></div><div class="b"><p>'+esc(s.story)+'</p>'+(s.with?'<p class="meta">Squad: '+esc(s.with)+'</p>':'')+'</div></div></button>';
   }).join('');
   [].forEach.call(document.querySelectorAll('.wb'),function(b){ b.addEventListener('click',function(){ b.classList.toggle('flip'); tone(b.classList.contains('flip')?740:560,0,.12,'triangle',.04); }); });
 
@@ -289,8 +547,15 @@ foot:'Made by Darby for Gordon. His nights come from his own tickets and message
     return s+'<text x="50" y="94" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" fill="#ece8f4" letter-spacing="1">P'+(i+1)+'</text></svg>'; }
   $('rostergrid').innerHTML=D.roster.map(function(r,i){ return '<button class="char">'+sigil(r.name,i)+'<h3>'+esc(r.name)+'</h3><div class="cls">'+esc(r.cls)+'</div><p>'+esc(r.note)+'</p>'+(r.first?'<div class="first">&#9654; start with: '+esc(r.first)+'</div>':'')+'</button>'; }).join('');
   [].forEach.call(document.querySelectorAll('.char'),function(b,i){ b.addEventListener('click',function(){ [].forEach.call(document.querySelectorAll('.char'),function(x){x.classList.toggle('sel',x===b);}); tone(392+i*70,0,.1,'square',.05); tone(784+i*70,.08,.2,'square',.04); }); });
+  $('loadgrid').innerHTML=D.loadout.map(function(it){ return '<div class="item" style="--c:'+it.c+'"><div class="rar">'+esc(it.rar)+'</div><h3>'+esc(it.name)+'</h3><p>'+esc(it.note)+'</p></div>'; }).join('');
   $('nextgrid').innerHTML=D.next.map(function(n){ return '<div class="lvl"><div class="hud">'+esc(n.when)+'</div><h3>'+esc(n.what)+'</h3><p>'+esc(n.note)+'</p></div>'; }).join('');
   $('p2').innerHTML=D.p2; $('note').innerHTML=D.note; $('foot').innerHTML=D.foot;
+
+  /* best friend edition */
+  var MM=(location.hash||'')==='#mason'&&D.mason;
+  if(MM){ document.documentElement.classList.add('mm'); var tc=document.querySelector('.tcopy'); tc.querySelector('.hud').innerHTML=D.mason.hud; tc.querySelector('p').textContent=D.mason.intro;
+    $('bffgrid').innerHTML=D.mason.bff.map(function(b){ return '<div class="bq"><div class="rar">'+esc(b.k)+'</div><h3>'+esc(b.t)+'</h3><blockquote>'+(b.w.indexOf('postcard')>-1?esc(b.q):'&ldquo;'+esc(b.q)+'&rdquo;')+'</blockquote><div class="w">'+esc(b.w)+'</div></div>'; }).join('');
+    $('bffsec').hidden=false; $('note').innerHTML=D.mason.note; $('p2').innerHTML=D.mason.p2; document.querySelector('#why h2').textContent='What you mean to me'; document.title='Into the Valley: Mason'; }
 
   /* ---------- the drop ---------- */
   var hold=$('hold'),rig=$('rig'),q=0,holding=false,riser=null,raf=0;
@@ -329,13 +594,13 @@ foot:'Made by Darby for Gordon. His nights come from his own tickets and message
   addEventListener('keydown',function(e){ if(!running||paused) return; var r=cab.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return; if(e.key==='ArrowLeft'||e.key==='a'||e.key==='A'){ steer(-1); e.preventDefault(); } if(e.key==='ArrowRight'||e.key==='d'||e.key==='D'){ steer(1); e.preventDefault(); } });
   cv.addEventListener('pointerdown',function(e){ if(!running){ begin(); return; } var r=cv.getBoundingClientRect(); steer(e.clientX-r.left<r.width/2?-1:1); });
   $('lb').onclick=function(){ if(!running) begin(); else steer(-1); }; $('rb').onclick=function(){ if(!running) begin(); else steer(1); };
-  function showMem(idx){ paused=true; var s=S[idx]; $('mcard').innerHTML='<div class="band" style="background:'+s.color+'"></div><div class="hud" style="color:var(--acid)">Wristband '+(score)+' of '+S.length+' unlocked</div><h3 style="margin-top:6px">'+esc(s.event)+'</h3><div class="meta">'+esc(s.date)+' &middot; '+esc(s.place)+'</div><p>'+esc(s.story)+'</p>'+(s.with?'<p class="meta">Squad: '+esc(s.with)+'</p>':'')+'<button class="btn solid" id="resume">'+(score>=S.length?'Finish the run':'Keep flying')+'</button>'; $('mem').hidden=false; $('resume').onclick=function(){ $('mem').hidden=true; if(score>=S.length){ cleared(); return; } paused=false; last=performance.now(); requestAnimationFrame(loop); }; $('resume').focus({preventScroll:true}); }
+  function showMem(idx){ paused=true; var s=S[idx]; $('mcard').innerHTML='<div class="band" style="background:'+s.color+'"></div><div class="hud" style="color:var(--acid)">Wristband '+(score)+' of '+S.length+' unlocked</div><h3 style="margin-top:6px">'+esc(s.event)+'</h3><div class="meta">'+esc(s.date)+' &middot; '+esc(s.place)+'</div><p>'+esc(s.story)+'</p>'+(MM&&s.mason?'<p class="meta" style="color:#f6c453">&#9733; Mason was here</p>':'')+'<button class="btn solid" id="resume">'+(score>=S.length?'Finish the run':'Keep flying')+'</button>'; $('mem').hidden=false; $('resume').onclick=function(){ $('mem').hidden=true; if(score>=S.length){ cleared(); return; } paused=false; last=performance.now(); requestAnimationFrame(loop); }; $('resume').focus({preventScroll:true}); }
   function cleared(){ running=false; $('ov').innerHTML='<div><div class="hud" style="color:var(--acid)">Valley cleared</div><h3 style="font-size:clamp(24px,4vw,36px);margin:10px 0 10px">All '+S.length+' wristbands</h3><p style="max-width:40ch;margin:0 auto 16px;color:var(--mute)">Every band is on the wall below. Next: charge the drop.</p><a class="start" href="#wall" style="text-decoration:none;display:inline-block">SEE THE WALL</a></div>'; $('ov').hidden=false; [523,659,784,1047,1319].forEach(function(f,i){ tone(f,i*.1,.4,'square',.05); }); }
   function loop(t){ if(!running||paused) return; var dt=Math.min(.05,(t-last)/1000); last=t; scroll+=dt*14;
     for(var i=0;i<pos.count;i++){ var x=base[i][0],z=base[i][1]; pos.setY(i,hgt(x,z-scroll)); } pos.needsUpdate=true; terrain.geometry.dispose(); terrain.geometry=new THREE.WireframeGeometry(geo);
     tx+=(LANES[lane]-tx)*Math.min(1,dt*10); ship.position.x=tx; ship.rotation.z=(tx-LANES[lane])*.35; ship.position.y=1+Math.sin(t/300)*.08; beam.material.opacity=.55+.25*Math.sin(t/220);
-    spawnT-=dt; var rem=remaining(); if(spawnT<=0&&rem.length&&bands.length<3){ var pick=rem.filter(function(k){ return !bands.some(function(b){return b.userData.idx===k;}); }); if(pick.length){ mkBand(pick[0]); spawnT=1.1; } }
-    for(var j=bands.length-1;j>=0;j--){ var b=bands[j]; b.position.z+=dt*16; b.rotation.y+=dt*2.4; if(Math.abs(b.position.z-ship.position.z)<.7&&Math.abs(b.position.x-tx)<1.3){ scene.remove(b); bands.splice(j,1); var k=b.userData.idx; if(!caught[k]){ caught[k]=1; score++; $('score').textContent=score; $('wb'+k).classList.add('caught'); catchSnd(); showMem(k); R.render(scene,cam); return; } } else if(b.position.z>9){ scene.remove(b); bands.splice(j,1); tone(196,0,.15,'triangle',.03); } }
+    spawnT-=dt; var rem=remaining(); if(spawnT<=0&&rem.length&&bands.length<3){ var pick=rem.filter(function(k){ return !bands.some(function(b){return b.userData.idx===k;}); }); if(pick.length){ mkBand(pick[0]); spawnT=.9; } }
+    for(var j=bands.length-1;j>=0;j--){ var b=bands[j]; b.position.z+=dt*16; b.rotation.y+=dt*2.4; if(b.position.z>-14&&Math.abs(b.position.x-tx)<1.6) b.position.x+=(tx-b.position.x)*Math.min(1,dt*2); if(Math.abs(b.position.z-ship.position.z)<.7&&Math.abs(b.position.x-tx)<1.3){ scene.remove(b); bands.splice(j,1); var k=b.userData.idx; if(!caught[k]){ caught[k]=1; score++; $('score').textContent=score; $('wb'+k).classList.add('caught'); catchSnd(); showMem(k); R.render(scene,cam); return; } } else if(b.position.z>9){ scene.remove(b); bands.splice(j,1); tone(196,0,.15,'triangle',.03); } }
     R.render(scene,cam); requestAnimationFrame(loop); }
   R.render(scene,cam);
 })();
